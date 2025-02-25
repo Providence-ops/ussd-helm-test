@@ -1,18 +1,40 @@
+# {{- if .Values.service.http.enabled }}
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: {{ .Values.service.http.name }}
+#   namespace: {{ .Values.namespace }}
+#   labels:
+#     {{- include "ussd-platform.labels" . | nindent 4 }}
+# spec:
+#   selector:
+#     app: {{ .Values.appName }}
+#   type: {{ .Values.service.http.type }} 
+#   ports:
+#     - name: http
+#       port: {{ .Values.service.http.port }}
+#       targetPort: {{ .Values.service.http.targetPort }}
+#       protocol: TCP
+# {{- end }}
+
+
+{{- if hasKey .Values.service "http" }}
 {{- if .Values.service.http.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.service.http.name }}
+  name: {{ .Values.service.http.name | default "http-service" }}
   namespace: {{ .Values.namespace }}
   labels:
     {{- include "ussd-platform.labels" . | nindent 4 }}
 spec:
   selector:
     app: {{ .Values.appName }}
-  type: {{ .Values.service.http.type }} 
+  type: {{ .Values.service.http.type | default "ClusterIP" }} 
   ports:
     - name: http
-      port: {{ .Values.service.http.port }}
-      targetPort: {{ .Values.service.http.targetPort }}
+      port: {{ .Values.service.http.port | default 80 }}
+      targetPort: {{ .Values.service.http.targetPort | default 8080 }}
       protocol: TCP
+{{- end }}
 {{- end }}
