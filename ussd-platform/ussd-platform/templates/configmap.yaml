@@ -1,0 +1,15 @@
+{{- range $app, $config := .Values.configmap }}
+{{- if $config.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "ussd-platform.fullname" . }}-{{ $app }}-config
+  namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "ussd-platform.labels" . | nindent 4 }}
+data:
+  {{- range $key, $value := $config.data }}
+  {{ $key }}: "{{ $value }}"
+  {{- end }}
+{{- end }}
+{{- end }}

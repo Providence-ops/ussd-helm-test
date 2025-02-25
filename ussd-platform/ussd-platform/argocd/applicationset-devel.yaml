@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: ussd-platform-deploy
+  namespace: argocd
+spec:
+  generators:
+    - matrix:
+        generators:
+          - list:
+              elements:
+                - environment: devel
+                  server: https://kubernetes.default.svc
+          - list:
+              elements:
+                - name: v1
+                  repoPath: helm-chart/my-app
+                  namespace: ussd-plaform
+                - name: v2
+                  repoPath: helm-chart/my-app
+                  namespace: ussd-platform
+    
+  template:
+    metadata:
+      name: "{{name}}-{{environment}}"
+    spec:
+      project: ussd
+      source:
+        repoURL: https://github.com/Providence-ops/GitOps-Example.git
+        path: "{{repoPath}}"
+        targetRevision: HEAD
+        helm:
+          valueFiles:
+            - "values-{{name}}.yaml"
+      destination:
+        server: "{{server}}"
+        namespace: "{{namespace}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - ServerSideApply=true
