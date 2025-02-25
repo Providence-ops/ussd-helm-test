@@ -8,9 +8,12 @@ applications:
     replicaCount: 1
 
     image:
-      repository: europe-west3-docker.pkg.dev/betika-shared-services/ussd-platform/ussd-account-platform
+      repository: nginx
       pullPolicy: IfNotPresent
-      tag: "latest"
+      tag: "stable-alpine"
+      # repository: europe-west3-docker.pkg.dev/betika-shared-services/ussd-platform/ussd-account-platform
+      # pullPolicy: IfNotPresent
+      # tag: "latest"
 
     podAnnotations: {}
 
@@ -25,15 +28,6 @@ applications:
           port: 8040
           targetPort: 8040
 
-      hosts:
-        - host: chart-example.local
-          paths:
-            - path: /
-              pathType: ImplementationSpecific
-      tls: []
-      #  - secretName: chart-example-tls
-      #    hosts:
-      #      - chart-example.local
 
     livenessProbe:
       httpGet:
@@ -89,14 +83,18 @@ applications:
     replicaCount: 1
 
     image:
-      repository: europe-west3-docker.pkg.dev/betika-shared-services/ussd-platform/ussd-payments-platform
+      repository: nginx
       pullPolicy: IfNotPresent
-      tag: "latest"
+      tag: "stable"
+
+      # repository: europe-west3-docker.pkg.dev/betika-shared-services/ussd-platform/ussd-payments-platform
+      # pullPolicy: IfNotPresent
+      # tag: "latest"
 
     podAnnotations: {}
 
     service:
-      httpd:
+      http:
         enabled: true
         name: ussd-ug-payments-platform-svc
         port: 8080
@@ -176,7 +174,7 @@ applications:
     podAnnotations: {}
 
     service:
-      httpd:
+      http:
         enabled: true
         name: ussd-ug-client-platform-svc
         port: 8080
@@ -242,15 +240,18 @@ applications:
     replicaCount: 1
 
     image:
-      repository: europe-west3-docker.pkg.dev/betika-shared-services/ussd-platform/ussd-match-platform
-      pullPolicy: IfNotPresent
-      tag: "latest"
+       repository: nginx
+       pullPolicy: IfNotPresent
+       tag: "latest"
+      # repository: europe-west3-docker.pkg.dev/betika-shared-services/ussd-platform/ussd-match-platform
+      # pullPolicy: IfNotPresent
+      # tag: "latest"
 
 
     podAnnotations: {}
 
     service:
-      httpd:
+      http:
         enabled: true
         name: ussd-ug-match-platform-svc
         port: 8080
@@ -325,15 +326,18 @@ applications:
     replicaCount: 1
 
     image:
-      repository: europe-west3-docker.pkg.dev/betika-shared-services/ussd-platform/ussd-bankerbet-platform
+      repository: nginx
       pullPolicy: IfNotPresent
-      tag: "latest"
+      tag: "stable-alpine"
+      # repository: europe-west3-docker.pkg.dev/betika-shared-services/ussd-platform/ussd-bankerbet-platform
+      # pullPolicy: IfNotPresent
+      # tag: "latest"
 
 
     podAnnotations: {}
 
     service:
-      httpd:
+      http:
         enabled: true
         name: ussd-ug-bankerbet-platform-svc
         port: 8080
@@ -398,15 +402,18 @@ applications:
     replicaCount: 1
 
     image:
-      repository: europe-west3-docker.pkg.dev/betika-shared-services/ussd-platform/ussd-simulator-platform
+      repository: nginx-alpine
       pullPolicy: IfNotPresent
       tag: "latest"
+      # repository: europe-west3-docker.pkg.dev/betika-shared-services/ussd-platform/ussd-simulator-platform
+      # pullPolicy: IfNotPresent
+      # tag: "latest"
 
 
     podAnnotations: {}
 
     service:
-      httpd:
+      http:
         enabled: true
         name: ussd-ug-simulator-platform-svc
         port: 8080
@@ -443,15 +450,18 @@ applications:
     replicaCount: 1
 
     image:
-      repository: europe-west3-docker.pkg.dev/betika-shared-services/ussd-platform/ussd-proxies-platform
+      repository: nginx
       pullPolicy: IfNotPresent
-      tag: "latest"
+      tag: "stable-alpine"
+      # repository: europe-west3-docker.pkg.dev/betika-shared-services/ussd-platform/ussd-proxies-platform
+      # pullPolicy: IfNotPresent
+      # tag: "latest"
 
 
     podAnnotations: {}
 
     service:
-      httpd:
+      http:
         enabled: true
         name: ussd-airtel-ug-proxy-svc
         port: 8080
@@ -505,15 +515,18 @@ applications:
     replicaCount: 1
 
     image:
-      repository: europe-west3-docker.pkg.dev/betika-shared-services/ussd-platform/ussd-proxies-platform
+      repository: nginx
       pullPolicy: IfNotPresent
-      tag: "latest"
+      tag: "stable-alpine"
+      # repository: europe-west3-docker.pkg.dev/betika-shared-services/ussd-platform/ussd-proxies-platform
+      # pullPolicy: IfNotPresent
+      # tag: "latest"
 
 
     podAnnotations: {}
 
     service:
-      httpd:
+      http:
         enabled: true
         name: ussd-mtn-ug-proxy-svc
         port: 8080
