@@ -13,10 +13,10 @@ spec:
                   server: https://kubernetes.default.svc
           - list:
               elements:
-                - name: v1
+                - name: devel
                   repoPath: ussd-helm/ussd-platform/ussd-platform
                   namespace: ussd-plaform
-                - name: v2
+                - name: devel
                   repoPath: ussd-helm/ussd-platform/ussd-platform
                   namespace: ussd-platform
     
