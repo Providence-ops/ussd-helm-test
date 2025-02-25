@@ -14,19 +14,19 @@ spec:
           - list:
               elements:
                 - name: v1
-                  repoPath: helm-chart/my-app
+                  repoPath: ussd-helm/ussd-platform/ussd-platform
                   namespace: ussd-plaform
                 - name: v2
-                  repoPath: helm-chart/my-app
+                  repoPath: ussd-helm/ussd-platform/ussd-platform
                   namespace: ussd-platform
     
   template:
     metadata:
       name: "{{name}}-{{environment}}"
     spec:
-      project: ussd
+      project: default
       source:
-        repoURL: https://github.com/Providence-ops/GitOps-Example.git
+        repoURL: https://github.com/Providence-ops/ussd-helm-test.git
         path: "{{repoPath}}"
         targetRevision: HEAD
         helm:
